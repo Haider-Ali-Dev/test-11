@@ -1,0 +1,124 @@
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise" rel="stylesheet" type="text/css">
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="scroller">
+    <div class="scroller-content" id="typedtext">
+
+    </div>
+    <button class="btn">Who are you?</button>
+  </div>
+
+  <audio id="audio" src="why.mp3" preload="auto" loop />
+
+
+
+  <script>
+    // set up text to print, each item in array is new line
+    var aText = new Array(
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a massa at lectus ultrices porta sed et neque. Fusce dictum scelerisque leo ac congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam a ex metus. Curabitur a dolor vel lacus dignissim viverra. In hac habitasse platea dictumst. Aliquam consequat gravida magna, auctor consequat justo posuere ut. Quisque ut nibh tortor. Donec vel urna leo.",
+      "",
+      "Sed euismod risus ac vestibulum efficitur. Morbi imperdiet enim vitae tristique ultricies. Sed vitae luctus sapien. Sed eget velit velit. Sed quis dolor nec urna laoreet mollis. Sed eu dolor nibh. Aliquam ut fermentum est. Nam vitae semper velit. Nunc maximus sapien quis eros hendrerit euismod. Fusce non nunc et justo bibendum pulvinar. Nullam imperdiet augue eu dui volutpat, sed tristique mauris semper. ",
+      "",
+      "Praesent sit amet purus vel nunc sollicitudin dictum in sit amet risus. Etiam vitae sagittis turpis. Duis sed sapien consequat, facilisis eros sed, fringilla leo. Praesent et consequat nunc. Nunc iaculis ante eu lectus egestas, eget fringilla elit vulputate. Nulla facilisi. Vestibulum lacinia erat ac quam blandit, eget tempus urna mattis. In rhoncus bibendum felis vitae luctus.",
+      "",
+      "Curabitur semper neque at tortor ornare varius. Vivamus commodo mi a lectus malesuada varius. Nullam nec justo vel enim ultrices venenatis. Aliquam scelerisque metus vel sapien finibus dapibus. Donec quis erat orci. Quisque luctus tincidunt tellus ac viverra. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec in purus posuere, malesuada tortor eu, faucibus magna. ",
+      "",
+      "Maecenas maximus dolor a urna egestas, ut pharetra dolor sodales. Sed vel risus ut justo sollicitudin posuere sed vel justo. Praesent euismod aliquam nulla quis vestibulum. Nam commodo bibendum lectus, quis volutpat lectus. Duis vitae sapien commodo, ullamcorper lectus sed, suscipit leo. Curabitur vel tellus eros. Aliquam tincidunt quam vitae arcu scelerisque, at pellentesque justo bibendum. Duis ultricies augue eget mauris blandit, ut bibendum ipsum bibendum. ",
+      "",
+      "Remember these words?",
+      "<ul><li>'maximus dolor a urna egestas, ut pharetra dolor sodales..'<br></li><li>'maximus dolor a urna egestas, ut pharetra dolor sodales.'<br></li><li>'maximus dolor a urna egestas, ut pharetra dolor sodales.'<br></li><li>'maximus dolor a urna egestas, ut pharetra dolor sodales..'<br></li><li>'maximus dolor a urna egestas, ut pharetra dolor sodales.'<br></li></ul>",
+
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis risus vel augue auctor, sit amet elementum mi imperdiet. Duis bibendum est odio, at tristique enim dapibus eu. Etiam hendrerit augue sed libero efficitur, vel hendrerit libero convallis. Integer pellentesque volutpat massa, sed gravida turpis consequat ut. Nam vel ligula libero. Duis ac pretium nibh. Sed et ligula eget nisi sagittis accumsan.",
+      "",
+      "Proin lacinia massa felis, vel facilisis massa feugiat vel. Duis at velit velit. Aliquam erat volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi ac felis felis. Nunc rhoncus nulla id posuere efficitur. Nulla facilisi. Praesent nec tortor ut metus finibus ultrices quis vel metus.",
+      "",
+      "Curabitur maximus nibh id turpis efficitur volutpat. Suspendisse quis libero sed massa laoreet dapibus. In hac habitasse platea dictumst. Sed pellentesque elit at sem sagittis, et consequat sapien imperdiet. Aliquam hendrerit, ex vel bibendum vulputate, velit velit fringilla ante, eu suscipit quam velit sit amet lorem.",
+      "",
+      "Nam euismod est ac dolor eleifend, a luctus eros vehicula. Fusce lobortis laoreet leo, id lobortis felis bibendum ut. Sed lobortis ante a libero consectetur, at tincidunt mauris consequat. In porttitor velit sit amet dolor auctor eleifend. Donec sed neque id nisi placerat euismod. Aenean ut libero mauris. Aliquam tristique lobortis magna quis maximus. Donec ornare ante sed nisl rutrum vehicula. ",
+      "",
+      "Nullam bibendum dolor vel lorem ullamcorper ultrices. In euismod facilisis arcu, at luctus elit vehicula vel. Nulla blandit libero in tortor sodales, eget posuere massa tempor. Donec suscipit, magna a malesuada congue, arcu tellus blandit nibh, sit amet blandit nisi nunc ut tortor. In eu malesuada dolor, eget imperdiet elit. ",
+      "",
+      "Mauris varius dapibus erat vel gravida. Nullam non eros at neque eleifend tincidunt quis in magna. Sed varius lacinia nunc ac commodo. Nunc commodo euismod dolor id tincidunt. Proin maximus fringilla turpis, nec convallis neque faucibus eu. Aenean eu felis id mi pharetra interdum. Praesent fringilla tristique lacus, eget venenatis sapien vestibulum non. Praesent vel dui at nulla aliquam placerat eget ac dolor. ",
+    );
+    var iSpeed = 5; // time delay of print out
+    var iIndex = 0; // start printing array at this position
+    var iArrLength = aText[0].length; // the length of the text array
+    var iScrollAt = 20; // start scrolling up at this many lines
+
+    var iTextPos = 0; // initialise text position
+    var sContents = ''; // initialise contents variable
+    var iRow; // initialise current row
+
+    let timer
+    let playing = false
+
+
+    // ...
+
+    // In the typewriter function
+    function typewriter() {
+      sContents = ' ';
+      iRow = Math.max(0, iIndex - iScrollAt);
+      var destination = document.getElementById("typedtext");
+      var isScrolledToBottom = destination.parentElement.scrollTop + destination.parentElement.clientHeight >= destination.parentElement.scrollHeight;
+
+      while (iRow < iIndex) {
+        sContents += aText[iRow++] + '<br />';
+      }
+      destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + "_";
+
+      // Updated scrolling logic
+      const scrollTo = (element, duration) => {
+        const startingY = element.scrollTop;
+        const elementHeight = element.scrollHeight - element.clientHeight;
+        const targetY = elementHeight;
+        const diff = targetY - startingY;
+        let start;
+
+        window.requestAnimationFrame(function step(timestamp) {
+          if (!start) start = timestamp;
+          const time = timestamp - start;
+          const percent = Math.min(time / duration, 1);
+
+          element.scrollTop = startingY + diff * percent;
+
+          if (time < duration) {
+            window.requestAnimationFrame(step);
+          }
+        });
+      };
+
+      scrollTo(destination.parentElement, 500);
+
+
+      if (iTextPos++ == iArrLength) {
+        iTextPos = 0;
+        iIndex++;
+        if (iIndex != aText.length) {
+          iArrLength = aText[iIndex].length;
+          timer = setTimeout(typewriter, 500);
+        }
+      } else {
+        timer = setTimeout(typewriter, iSpeed);
+      }
+    }
+
+    document.querySelector('.btn').addEventListener('click', function () {
+      if (!playing) {
+        var popupsound = document.getElementById("audio");
+        popupsound.volume = 0.5
+        popupsound.play(); //play the audio file
+        playing = true
+        typewriter();
+      } else {
+        clearTimeout(timer)
+        playing = false
+      }
+    })
+
+
+  </script>
+</body>

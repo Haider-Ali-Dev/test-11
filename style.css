@@ -1,0 +1,66 @@
+.scroller {
+  overflow: auto;
+  min-height: 10%;
+  max-height: 80vh;
+  display: flex;
+  font-size: 25px;
+  flex-direction: column-reverse;
+}
+
+.scroller-content {
+  height: 100%;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.scroller .scroller-content .item {
+  height: 100px;
+  transform: translateZ(
+    0
+  ); /* fixes a bug in Safari iOS where the scroller doesn't update */
+}
+
+.btn {
+  font-size: 1.5rem;
+  padding: 10px 15px;
+  font-weight: bold;
+}
+
+body {
+  font-family: "Waiting for the Sunrise", cursive;
+  font-size: 30px;
+  margin: 10px 20px;
+  letter-spacing: 6px;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  padding-top: 50px; /* add padding to top */
+  padding-left: 30px; /* add padding to left */
+  padding-right: 23px; /* add padding to right */
+}
+
+@media only screen and (min-width: 1100px) {
+  body {
+    margin: 10px 35px;
+  }
+
+  .scroller {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (min-width: 767px) {
+  body {
+    margin: 10px 50px;
+  }
+
+  .scroller {
+    font-size: 30px;
+  }
+}
+
+#audio {
+  display: none;
+}
